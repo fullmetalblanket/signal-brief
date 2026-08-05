@@ -1,0 +1,12 @@
+# Optional local SearXNG reference. Do not use this file to start a service automatically.
+use_default_settings: true
+server:
+  bind_address: "127.0.0.1"
+  port: 8080
+  secret_key: "replace-with-a-unique-local-secret"
+search:
+  safe_search: 0
+  default_lang: "en"
+  formats:
+    - html
+    - json

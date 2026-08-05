@@ -5,7 +5,7 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 ## Workflow
 
 1. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL.
-2. Treat the seed source as a starting point, then gather primary and reputable additional relevant sources appropriate to it.
+2. Treat the seed source as a starting point, then use the local `searxng` workflow to gather primary and reputable additional relevant sources.
 3. Select an existing topic directory or create a specific one at the workspace root, then read relevant existing notes before starting.
 4. Extend or cross-link material that substantially overlaps instead of creating a near-duplicate.
 5. Save a dated, source-backed research note under `<topic>/` with a summary, findings, analysis, and source links.
@@ -23,6 +23,8 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 
 - Use the local `marp-slides` workflow to create a companion deck when Marp is available.
 - For a YouTube source, use the local `youtube-transcript` workflow to extract captions before analyzing the video when possible.
+- Use the local `searxng` workflow for source discovery. It uses a reachable local or configured SearXNG instance, then transparently falls back to DuckDuckGo.
+- When the user asks to set up SignalBrief, use the local `signalbrief-setup` workflow to diagnose the core capabilities before requesting any environment changes.
 - Codex uses the repository-local `.agents/skills` adapters. Claude Code can use the `.claude/skills` adapters where that convention is supported.
 
 ## Layout
