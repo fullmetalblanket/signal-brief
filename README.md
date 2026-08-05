@@ -1,6 +1,6 @@
 # SignalBrief
 
-Every research note is paired with a concise Marp slide deck for rapid comprehension. The note preserves evidence, nuance, and links. The deck turns the same work into an easy-to-scan briefing.
+The research note is the durable source of truth, preserving evidence, nuance, and links. When Marp support is available, SignalBrief also creates a concise companion slide deck for rapid comprehension.
 
 SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL. The workspace instructions treat that source as a starting point, gather additional relevant sources, write a research note, and create a companion Marp deck where supported. An open-ended topic or question is also supported when there is no seed source.
 
@@ -9,7 +9,7 @@ SignalBrief is a reusable, instruction-first workspace for AI-assisted research 
 1. Choose or create a personal research home folder, for example `Research`.
 2. Clone SignalBrief into that folder. The cloned repository itself is the workspace root, so do not create another nested `research/` directory.
 3. Start your preferred AI assistant with the SignalBrief repository as its working directory, then paste a seed source, usually a webpage, article, blog post, or YouTube URL.
-4. The assistant reads [AGENTS.md](AGENTS.md), uses the seed source to gather and assess additional relevant sources, and writes a Markdown research note in a topic directory at the repository root.
+4. Have the assistant follow [AGENTS.md](AGENTS.md). If it does not load project instructions automatically, paste or point it to that file. It uses the seed source to gather and assess additional relevant sources, then writes a Markdown research note in a topic directory at the repository root.
 5. When Marp is supported in that environment, it also creates a concise `*-slides.md` deck beside the note.
 
 You can instead provide an open-ended topic or question when you do not have a seed source.
