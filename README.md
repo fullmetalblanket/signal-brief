@@ -2,7 +2,7 @@
 
 The research note is the durable source of truth, preserving evidence, nuance, and links. When Marp support is available, SignalBrief also creates a concise companion slide deck for rapid comprehension.
 
-SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL. The workspace instructions treat that source as a starting point, gather additional relevant sources, write a research note, and create a companion Marp deck where supported. An open-ended topic or question is also supported when there is no seed source.
+SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL. The workspace instructions treat that source as a starting point, gather additional relevant sources, write a research note, and create a companion Marp deck where supported.
 
 ## Quick start
 
