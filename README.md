@@ -6,10 +6,11 @@ SignalBrief is a reusable, instruction-first workspace for AI-assisted research 
 
 ## Quick start
 
-1. Clone or copy this repository, then start your preferred AI assistant with this repository as its working directory.
-2. Paste a seed source into the session, usually a webpage, article, blog post, or YouTube URL.
-3. The assistant reads [AGENTS.md](AGENTS.md), uses the seed source to gather and assess additional relevant sources, and writes a Markdown research note in a topic directory at the repository root.
-4. When Marp is supported in that environment, it also creates a concise `*-slides.md` deck beside the note.
+1. Choose or create a personal research home folder, for example `Research`.
+2. Clone SignalBrief into that folder. The cloned repository itself is the workspace root, so do not create another nested `research/` directory.
+3. Start your preferred AI assistant with the SignalBrief repository as its working directory, then paste a seed source, usually a webpage, article, blog post, or YouTube URL.
+4. The assistant reads [AGENTS.md](AGENTS.md), uses the seed source to gather and assess additional relevant sources, and writes a Markdown research note in a topic directory at the repository root.
+5. When Marp is supported in that environment, it also creates a concise `*-slides.md` deck beside the note.
 
 You can instead provide an open-ended topic or question when you do not have a seed source.
 
