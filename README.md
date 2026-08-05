@@ -18,7 +18,7 @@ AI tools differ in how they discover project-local skills. SignalBrief keeps the
 ## Quick start
 
 1. Choose or create a personal research home folder, for example `Research`.
-2. Clone SignalBrief directly into that personal research home folder so the folder itself becomes the research workspace, with no nested `research/` directory.
+2. Clone SignalBrief into that personal research home folder.
 3. Start a preferred AI assistant in your research directory and paste a source, such as a webpage, article, blog post, or YouTube URL.
 4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
 
