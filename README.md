@@ -22,6 +22,10 @@ AI tools differ in how they discover project-local skills. SignalBrief keeps the
 3. Start a preferred AI assistant in your research directory and paste a source, such as a webpage, article, blog post, or YouTube URL.
 4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
 
+## What happens under the hood
+
+SignalBrief is expected to select or create a topic-specific directory at the workspace root, then check relevant existing notes first. When research substantially overlaps, it extends or cross-links the existing material instead of creating a near-duplicate. It writes a dated, source-backed note and, where Marp is available, a companion deck beside it. Generated previews, downloads, and private working files stay out of version control. This is the intended workflow, not a database-level automatic deduplication guarantee.
+
 ## Two ways to learn from the same research
 
 **New to the topic:** start with the deck for orientation, then read the full research note and follow its sources for evidence and detail.
