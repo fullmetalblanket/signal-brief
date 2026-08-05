@@ -18,7 +18,13 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 - Avoid presenting uncertain claims as settled facts.
 - Add a new topic directory only when an existing one is not a good fit.
 
+## Bundled workflows
+
+- Use the local `marp-slides` workflow to create a companion deck when Marp is available.
+- For a YouTube source, use the local `youtube-transcript` workflow to extract captions before analyzing the video when possible.
+
 ## Layout
 
 - `<topic>/` - topic-organized notes and their companion decks at the repository root
 - `sources/` - optional source captures or bibliographies that should be retained
+- `skills/` - canonical bundled workflow instructions
