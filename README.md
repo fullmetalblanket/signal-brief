@@ -22,10 +22,6 @@ AI tools differ in how they discover project-local skills. SignalBrief keeps the
 3. Start a preferred AI assistant in your research directory and paste a source, such as a webpage, article, blog post, or YouTube URL.
 4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
 
-For example:
-
-> Start with https://example.com/article. Gather additional relevant sources, then create `example-topic/example-topic.md` with the scope, research date, summary, key findings, analysis, and sources. If Marp is available in this environment, also create `example-topic/example-topic-slides.md`. Clearly label uncertainty and distinguish source-backed facts from synthesis.
-
 ## Two ways to learn from the same research
 
 **New to the topic:** start with the deck for orientation, then read the full research note and follow its sources for evidence and detail.
