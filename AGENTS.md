@@ -4,12 +4,13 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 
 ## Workflow
 
-1. Start an AI session from this repository directory and provide a URL, YouTube URL, document, question, or topic.
-2. Read existing material in the closest topic directory before starting.
-3. Gather primary and reputable secondary sources appropriate to the question.
-4. Save the research note under `research/<topic>/` with a summary, findings, analysis, and source links.
-5. Create `*-slides.md` beside the note when Marp support is available. Otherwise include a concise slide outline in the note or report that the deck is unavailable.
-6. Keep generated previews, downloads, recordings, and private working files out of version control.
+1. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL.
+2. Treat the seed source as a starting point, then gather primary and reputable additional relevant sources appropriate to it.
+3. Use an open-ended topic or question when there is no seed source.
+4. Read existing material in the closest topic directory before starting.
+5. Save the research note under `<topic>/` with a summary, findings, analysis, and source links.
+6. Create `*-slides.md` beside the note when Marp support is available. Otherwise include a concise slide outline in the note or report that the deck is unavailable.
+7. Keep generated previews, downloads, recordings, and private working files out of version control.
 
 ## Conventions
 
@@ -20,5 +21,5 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 
 ## Layout
 
-- `research/` - topic-organized notes and their companion decks
+- `<topic>/` - topic-organized notes and their companion decks at the repository root
 - `sources/` - optional source captures or bibliographies that should be retained

@@ -2,18 +2,20 @@
 
 Every research note is paired with a concise Marp slide deck for rapid comprehension. The note preserves evidence, nuance, and links. The deck turns the same work into an easy-to-scan briefing.
 
-SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory, paste a URL, YouTube URL, document, question, or topic, and the workspace instructions guide the agent through source gathering, research-note authoring, and a companion Marp deck where supported.
+SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL. The workspace instructions treat that source as a starting point, gather additional relevant sources, write a research note, and create a companion Marp deck where supported. An open-ended topic or question is also supported when there is no seed source.
 
 ## Quick start
 
 1. Clone or copy this repository, then start your preferred AI assistant with this repository as its working directory.
-2. Paste a URL, YouTube URL, document, question, or topic into the session.
-3. The assistant reads [AGENTS.md](AGENTS.md), gathers and assesses relevant sources, and writes a Markdown research note under `research/`.
+2. Paste a seed source into the session, usually a webpage, article, blog post, or YouTube URL.
+3. The assistant reads [AGENTS.md](AGENTS.md), uses the seed source to gather and assess additional relevant sources, and writes a Markdown research note in a topic directory at the repository root.
 4. When Marp is supported in that environment, it also creates a concise `*-slides.md` deck beside the note.
+
+You can instead provide an open-ended topic or question when you do not have a seed source.
 
 For example:
 
-> Research the current approaches to battery recycling. Create a research note with the scope, research date, summary, key findings, analysis, and sources. If Marp is available in this environment, also create a concise companion deck. Clearly label uncertainty and distinguish source-backed facts from synthesis.
+> Start with https://example.com/article. Gather additional relevant sources, then create `example-topic/example-topic.md` with the scope, research date, summary, key findings, analysis, and sources. If Marp is available in this environment, also create `example-topic/example-topic-slides.md`. Clearly label uncertainty and distinguish source-backed facts from synthesis.
 
 ## Two ways to learn from the same research
 
@@ -33,10 +35,9 @@ The repository is the portable workflow and structure. It does not require a par
 ## Workspace layout
 
 ```text
-research/
-  topic-name/
-    topic-name.md
-    topic-name-slides.md
+topic-name/
+  topic-name.md
+  topic-name-slides.md
 sources/
 ```
 
