@@ -19,6 +19,8 @@ tmp/
 **/*.gif
 **/*.mp4
 **/*.webm
+!assets/
+!assets/signalbrief-logo.png
 
 # Downloaded or recorded media
 downloads/
