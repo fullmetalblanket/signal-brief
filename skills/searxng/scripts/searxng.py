@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Source-discovery client with SearXNG and DuckDuckGo fallback.
+"""Source-discovery client with SearXNG and Mojeek fallback.
 
-Purpose: Query a reachable SearXNG instance, then transparently fall back to DuckDuckGo.
+Purpose: Query a reachable SearXNG instance, then fall back to parsed Mojeek HTML results.
 Public API: Run this file with a query and optional category, language, time-range, limit, or JSON flags.
-Upstream deps: Python 3 standard library, an optional SearXNG endpoint, and DuckDuckGo's public endpoint.
+Upstream deps: Python 3 standard library, an optional SearXNG endpoint, and Mojeek's public HTML endpoint.
 Downstream consumers: The SignalBrief searxng skill and agents gathering sources for a research note.
 Failure modes: Returns no results when both network paths fail; does not start services or install dependencies.
-Performance: Uses a 30-second SearXNG timeout and a 15-second fallback timeout.
+Performance: Uses a 5-second SearXNG timeout and a 10-second fallback timeout.
 """
 
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
+from html.parser import HTMLParser
 from typing import Any, Dict, List, Optional
 
 
 SEARXNG_URL = os.getenv("SEARXNG_URL", "http://localhost:8080").rstrip("/")
+SEARXNG_TIMEOUT_SECONDS = 5
+FALLBACK_TIMEOUT_SECONDS = 10
 
 
 def search_searxng(
@@ -41,7 +45,7 @@ def search_searxng(
             url,
             headers={"User-Agent": "SignalBrief/1.0", "Accept": "application/json"},
         )
-        with urllib.request.urlopen(request, timeout=30) as response:
+        with urllib.request.urlopen(request, timeout=SEARXNG_TIMEOUT_SECONDS) as response:
             payload = json.loads(response.read().decode("utf-8"))
         return payload.get("results", [])[:limit]
     except Exception as error:
@@ -49,42 +53,73 @@ def search_searxng(
         return []
 
 
-def search_duckduckgo(query: str, limit: int) -> List[Dict[str, Any]]:
-    """Use DuckDuckGo's instant-answer endpoint when SearXNG is unavailable."""
-    params = {"q": query, "format": "json", "no_html": "1", "skip_disambig": "1"}
-    url = "https://api.duckduckgo.com/?" + urllib.parse.urlencode(params)
+class MojeekResultsParser(HTMLParser):
+    """Extract direct result URLs, titles, and snippets from Mojeek result cards."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.results: List[Dict[str, Any]] = []
+        self.current: Optional[Dict[str, str]] = None
+        self.collecting: Optional[str] = None
+
+    def handle_starttag(self, tag: str, attrs: List[tuple[str, Optional[str]]]) -> None:
+        attributes = dict(attrs)
+        classes = attributes.get("class", "").split()
+        if tag == "li" and any(re.fullmatch(r"r\d+", css_class) for css_class in classes):
+            self.current = {"title": "", "url": "", "content": ""}
+        if not self.current:
+            return
+        if tag == "a" and "title" in classes:
+            self.current["url"] = attributes.get("href", "")
+            self.collecting = "title"
+        elif tag == "p" and "s" in classes:
+            self.collecting = "content"
+
+    def handle_data(self, data: str) -> None:
+        if self.current and self.collecting:
+            self.current[self.collecting] += data
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"a", "p"}:
+            self.collecting = None
+        if tag == "li" and self.current:
+            title = " ".join(self.current["title"].split())
+            url = self.current["url"]
+            content = " ".join(self.current["content"].split())
+            if title and url and content:
+                self.results.append(
+                    {
+                        "title": title,
+                        "url": url,
+                        "content": content,
+                        "score": 0.5,
+                        "engines": ["mojeek"],
+                    }
+                )
+            self.current = None
+            self.collecting = None
+
+
+def search_web_fallback(query: str, limit: int) -> List[Dict[str, Any]]:
+    """Search Mojeek's HTML endpoint when SearXNG is unavailable."""
+    url = "https://www.mojeek.com/search?" + urllib.parse.urlencode({"q": query})
     try:
-        with urllib.request.urlopen(url, timeout=15) as response:
-            payload = json.loads(response.read().decode("utf-8"))
+        request = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; SignalBrief/1.0)"},
+        )
+        with urllib.request.urlopen(request, timeout=FALLBACK_TIMEOUT_SECONDS) as response:
+            document = response.read().decode("utf-8", "replace")
     except Exception as error:
-        print(f"DuckDuckGo fallback error: {error}", file=sys.stderr)
+        print(f"Mojeek fallback error: {error}", file=sys.stderr)
         return []
 
-    results: List[Dict[str, Any]] = []
-    if payload.get("Abstract"):
-        results.append(
-            {
-                "title": payload.get("Heading", "Instant Answer"),
-                "url": payload.get("AbstractURL", ""),
-                "content": payload["Abstract"],
-                "score": 1.0,
-                "engines": ["duckduckgo"],
-            }
-        )
-    for topic in payload.get("RelatedTopics", []):
-        if len(results) >= limit:
-            break
-        if isinstance(topic, dict) and topic.get("Text"):
-            results.append(
-                {
-                    "title": topic["Text"].split(" - ", maxsplit=1)[0],
-                    "url": topic.get("FirstURL", ""),
-                    "content": topic["Text"],
-                    "score": 0.5,
-                    "engines": ["duckduckgo"],
-                }
-            )
-    return results
+    parser = MojeekResultsParser()
+    parser.feed(document)
+    parser.close()
+    if not parser.results:
+        print("Mojeek fallback returned no parseable web results.", file=sys.stderr)
+    return parser.results[:limit]
 
 
 def search(
@@ -94,11 +129,11 @@ def search(
     language: str,
     time_range: Optional[str],
 ) -> List[Dict[str, Any]]:
-    """Search SearXNG first and use DuckDuckGo only when no results are returned."""
+    """Search SearXNG first and use Mojeek only when no results are returned."""
     results = search_searxng(query, limit, category, language, time_range)
     if not results:
-        print("SearXNG unavailable, falling back to DuckDuckGo...", file=sys.stderr)
-        results = search_duckduckgo(query, limit)
+        print("SearXNG unavailable, falling back to Mojeek web search...", file=sys.stderr)
+        results = search_web_fallback(query, limit)
     return results
 
 
@@ -121,7 +156,7 @@ def format_results(results: List[Dict[str, Any]], query: str) -> str:
 
 def main() -> None:
     """Parse command-line arguments and print structured or human-readable results."""
-    parser = argparse.ArgumentParser(description="SearXNG source-discovery client with DuckDuckGo fallback")
+    parser = argparse.ArgumentParser(description="SearXNG source-discovery client with Mojeek fallback")
     parser.add_argument("query", nargs="+", help="Search query")
     parser.add_argument("-n", "--limit", type=int, default=10, help="Maximum result count")
     parser.add_argument(

@@ -26,7 +26,7 @@ if command -v curl >/dev/null 2>&1 && curl --connect-timeout 1 --max-time 3 --si
   "${searxng_url%/}/search?q=signalbrief&format=json" >/dev/null; then
   status 'SearXNG' "ready at ${searxng_url}"
 else
-  status 'SearXNG' "unavailable at ${searxng_url} - DuckDuckGo fallback remains available"
+  status 'SearXNG' "unavailable at ${searxng_url} - Mojeek web-search fallback will be tried"
 fi
 
 if command -v marp >/dev/null 2>&1; then

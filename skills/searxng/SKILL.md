@@ -1,6 +1,6 @@
 ---
 name: searxng
-description: Discover current web sources with a reachable SearXNG instance or DuckDuckGo fallback.
+description: Discover current web sources with a reachable SearXNG instance or Mojeek fallback.
 ---
 
 # Source Discovery
@@ -15,7 +15,7 @@ Run the bundled standard-library client from the repository root:
 python3 skills/searxng/scripts/searxng.py "research query" --json -n 10
 ```
 
-The client first queries `http://localhost:8080`. Set `SEARXNG_URL` to use an accessible SearXNG instance elsewhere. If the instance cannot be reached or returns no results, the client reports the condition and falls back to DuckDuckGo. It does not start Docker, install packages, or create a local service.
+The client first queries `http://localhost:8080`. Set `SEARXNG_URL` to use an accessible SearXNG instance elsewhere. If the instance cannot be reached or returns no results, it tries Mojeek's public HTML search endpoint and extracts ordinary result titles, direct URLs, and snippets. If that fallback is unavailable or returns no parseable results, the client reports the error and returns no results. It does not start Docker, install packages, or create a local service.
 
 ## Search guidance
 

@@ -23,7 +23,7 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 
 - Use the local `marp-slides` workflow to create a companion deck when Marp is available.
 - For a YouTube source, use the local `youtube-transcript` workflow to extract captions before analyzing the video when possible.
-- Use the local `searxng` workflow for source discovery. It uses a reachable local or configured SearXNG instance, then transparently falls back to DuckDuckGo.
+- Use the local `searxng` workflow for source discovery. It uses a reachable local or configured SearXNG instance, then tries Mojeek web-search results and reports when no fallback results are available.
 - When the user asks to set up SignalBrief, use the local `signalbrief-setup` workflow to diagnose the core capabilities before requesting any environment changes.
 - Codex uses the repository-local `.agents/skills` adapters. Claude Code can use the `.claude/skills` adapters where that convention is supported.
 

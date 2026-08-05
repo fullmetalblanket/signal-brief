@@ -12,7 +12,7 @@ SignalBrief bundles its source-discovery, Marp-slide, and YouTube-transcript wor
 
 - For slides, the bundled runner uses an existing public [Marp CLI](https://github.com/marp-team/marp-cli) when available. Otherwise, with approval where required, it runs `@marp-team/marp-cli` on demand through npm instead of requiring a permanent global install.
 - For YouTube transcripts, an existing [yt-dlp](https://github.com/yt-dlp/yt-dlp) installation is preferred. Without it, the workflow tries `curl` plus Python 3 or a browser transcript view. Captions must exist and be accessible for extraction to work.
-- For source discovery, the bundled Python 3 client checks `http://localhost:8080` by default or the optional `SEARXNG_URL` setting. When SearXNG is unavailable, it falls back to DuckDuckGo without starting Docker or installing a service.
+- For source discovery, the bundled Python 3 client checks `http://localhost:8080` by default or the optional `SEARXNG_URL` setting. When SearXNG is unavailable, it tries Mojeek web search for ordinary result links without starting Docker or installing a service, and reports an error if that fallback cannot return parseable results.
 
 ### Advanced environment notes
 
@@ -47,7 +47,7 @@ The repository is the portable workflow and structure. It includes local source-
 
 | Capability | What it enables | When it applies | How to obtain it | Fallback |
 | --- | --- | --- | --- | --- |
-| Source discovery | Searches for additional sources relevant to the seed material | Before authoring or extending a research note | Uses a reachable SearXNG instance at `localhost:8080` or `SEARXNG_URL` | DuckDuckGo instant-answer search |
+| Source discovery | Searches for additional sources relevant to the seed material | Before authoring or extending a research note | Uses a reachable SearXNG instance at `localhost:8080` or `SEARXNG_URL` | Mojeek web-search results |
 | Marp slides | A companion Markdown slide deck and, where supported, rendered slides | After a research note is ready for a concise briefing | Use Marp support, an extension, or a skill available for your chosen AI environment | Keep a short slide outline in the note, or create a plain Markdown summary |
 | YouTube transcripts | Searchable spoken content from a video | When a video is a research source | Use a transcript feature, service, or skill supported by your chosen AI environment | Cite the video and use available captions, notes, or other published sources |
 

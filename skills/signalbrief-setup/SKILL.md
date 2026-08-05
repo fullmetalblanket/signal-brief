@@ -17,7 +17,7 @@ From the repository root, run:
 
 Report the diagnostic output before changing anything. It checks the three core capabilities:
 
-- Source discovery: a reachable SearXNG endpoint is enhanced support. DuckDuckGo fallback remains available without it.
+- Source discovery: a reachable SearXNG endpoint is enhanced support. Mojeek web search is the fallback when it is available.
 - Marp decks: an installed Marp CLI is ready. npm can support the existing approval-gated, on-demand Marp path.
 - YouTube transcripts: `yt-dlp` is preferred. `curl` plus Python 3 or a browser transcript view remain valid fallbacks.
 
