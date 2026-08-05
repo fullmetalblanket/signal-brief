@@ -13,7 +13,7 @@ SignalBrief bundles its Marp slide and YouTube transcript workflows locally in [
 
 ### Advanced environment notes
 
-AI tools differ in how they discover project-local skills. SignalBrief keeps the canonical instructions in [`skills/`](skills/) and provides small discovery adapters for Claude and Codex. If an environment needs package-install approval or blocks network access, the agent should surface that before the first on-demand Marp run. It only asks to install `yt-dlp` when it is needed and the built-in fallbacks cannot complete the extraction.
+AI tools differ in how they discover project-local skills. SignalBrief keeps the canonical instructions in [`skills/`](skills/). Codex desktop discovers the adapters in [`.agents/skills/`](.agents/skills/) when you open or start the session in the SignalBrief repository. Claude Code can use the repository-local [`.claude/skills/`](.claude/skills/) adapters where that convention is supported. Other tools may need to be pointed to the corresponding canonical file in `skills/`. If an environment needs package-install approval or blocks network access, the agent should surface that before the first on-demand Marp run. It only asks to install `yt-dlp` when it is needed and the built-in fallbacks cannot complete the extraction.
 
 ## Quick start
 
@@ -30,7 +30,7 @@ AI tools differ in how they discover project-local skills. SignalBrief keeps the
 
 ## Workspace template versus optional capabilities
 
-The repository is the portable workflow and structure. It includes local Marp-slide and YouTube-transcript workflows, but their external tools remain environment-dependent. Discovery support differs by AI tool: the canonical instructions live in [`skills/`](skills/), while lightweight adapters in [`.claude/skills/`](.claude/skills/) and [`.codex/skills/`](.codex/skills/) point to them. If your tool uses another project-skill convention, point it to the corresponding file in `skills/` instead of installing a separate copy.
+The repository is the portable workflow and structure. It includes local Marp-slide and YouTube-transcript workflows, but their external tools remain environment-dependent. The canonical instructions live in [`skills/`](skills/), while the lightweight Codex and Claude Code adapters point to them without duplicating implementation. If your tool uses another project-skill convention, point it to the corresponding file in `skills/` instead of installing a separate copy.
 
 | Capability | What it enables | When it applies | How to obtain it | Fallback |
 | --- | --- | --- | --- | --- |

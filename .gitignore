@@ -1,9 +1,6 @@
 # Local AI and editor settings
 .claude/settings.local.json
-.codex/*
-!.codex/skills/
-!.codex/skills/**/
-!.codex/skills/**/SKILL.md
+.codex/
 .cursor/
 .vscode/settings.json
 

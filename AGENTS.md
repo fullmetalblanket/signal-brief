@@ -22,6 +22,7 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 
 - Use the local `marp-slides` workflow to create a companion deck when Marp is available.
 - For a YouTube source, use the local `youtube-transcript` workflow to extract captions before analyzing the video when possible.
+- Codex uses the repository-local `.agents/skills` adapters. Claude Code can use the `.claude/skills` adapters where that convention is supported.
 
 ## Layout
 
