@@ -1,0 +1,28 @@
+# Local AI and editor settings
+.claude/settings.local.json
+.codex/
+.cursor/
+.vscode/settings.json
+
+# Local research workspace state
+.agentic/
+.research-cache/
+scratch/
+tmp/
+
+# Generated slide output and previews
+**/*.pdf
+**/*.pptx
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.mp4
+**/*.webm
+
+# Downloaded or recorded media
+downloads/
+recordings/
+
+# Operating system files
+.DS_Store
