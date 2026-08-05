@@ -10,7 +10,6 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 4. Read existing material in the closest topic directory before starting.
 5. Save the research note under `<topic>/` with a summary, findings, analysis, and source links.
 6. Create `*-slides.md` beside the note when Marp support is available. Otherwise include a concise slide outline in the note or report that the deck is unavailable.
-7. Keep generated previews, downloads, recordings, and private working files out of version control.
 
 ## Conventions
 

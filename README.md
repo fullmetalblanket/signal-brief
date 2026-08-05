@@ -40,7 +40,3 @@ topic-name/
   topic-name-slides.md
 sources/
 ```
-
-## What to commit
-
-Commit research notes, companion deck source files, and curated bibliographies that can be shared. Keep generated slide exports, downloaded media, caches, local settings, and temporary scratch work untracked unless the repository intentionally needs them.
