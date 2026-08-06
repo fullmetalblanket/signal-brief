@@ -24,6 +24,16 @@ Optional self-hosting is for users who already want to run SearXNG. Configure it
 
 Start an AI session in this repository and say **“Set up SignalBrief.”** The bundled setup workflow checks source discovery, Marp, and YouTube transcript capabilities, reports available fallbacks, and surfaces any action that needs environment approval. It does not start Docker or install tools silently.
 
+## Using SignalBrief in desktop apps
+
+### ChatGPT desktop app with Codex
+
+This is the recommended desktop GUI experience. Create or open a local Codex project with your cloned SignalBrief repository as its primary folder. Codex can then discover this repository's [`AGENTS.md`](AGENTS.md) and [`.agents/skills/`](.agents/skills/) adapters. Start a session in that project, say **“Set up SignalBrief,”** then paste a source URL.
+
+### Claude Code
+
+Open a terminal in the cloned SignalBrief repository and start Claude Code there. Claude Code can use the repository's [`CLAUDE.md`](CLAUDE.md) and [`.claude/skills/`](.claude/skills/) adapters. Say **“Set up SignalBrief,”** then paste a source URL. The regular Claude Desktop app does not automatically discover these project-local instructions or skills; it needs a local-files extension or connector, or project material supplied manually.
+
 ## Quick start
 
 1. Choose or create a personal research home folder, for example `Research`.
