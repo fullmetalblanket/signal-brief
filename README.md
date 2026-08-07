@@ -16,7 +16,7 @@ SignalBrief is a reusable, instruction-first workspace for AI-assisted research 
    ```
 
    The trailing dot is intentional - it puts SignalBrief directly in your chosen folder, which becomes your workspace, and prevents an extra nested `signal-brief` directory.
-3. Start your preferred AI assistant in that chosen research folder. Say **“Set up SignalBrief,”** then paste a source URL.
+3. Start your preferred AI assistant in that chosen research folder and paste a source URL.
 4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
 
 ## Prerequisites
@@ -35,17 +35,17 @@ Optional self-hosting is for users who already want to run SearXNG. Configure it
 
 ## First run
 
-Start an AI session in this repository and say **“Set up SignalBrief.”** The bundled setup workflow checks source discovery, Marp, and YouTube transcript capabilities, reports available fallbacks, and surfaces any action that needs environment approval. It does not start Docker or install tools silently.
+Start an AI session in this repository and paste a source URL. When the first source arrives, SignalBrief checks the relevant source-discovery, transcript, and deck capabilities, uses available project-local workflows and fallbacks, and asks for approval only when an environment change is actually needed for that source or desired output. It does not install tools silently, start Docker, or change machine-wide configuration.
 
 ## Using SignalBrief in desktop apps
 
 ### ChatGPT desktop app with Codex
 
-This is the recommended desktop GUI experience. Create or open a local Codex project with your cloned SignalBrief repository as its primary folder. Codex can then discover this repository's [`AGENTS.md`](AGENTS.md) and [`.agents/skills/`](.agents/skills/) adapters. Start a session in that project, say **“Set up SignalBrief,”** then paste a source URL.
+This is the recommended desktop GUI experience. Create or open a local Codex project with your cloned SignalBrief repository as its primary folder. Codex can then discover this repository's [`AGENTS.md`](AGENTS.md) and [`.agents/skills/`](.agents/skills/) adapters. Start a session in that project and paste a source URL.
 
 ### Claude Code
 
-Open a terminal in the cloned SignalBrief repository and start Claude Code there. Claude Code can use the repository's [`CLAUDE.md`](CLAUDE.md) and [`.claude/skills/`](.claude/skills/) adapters. Say **“Set up SignalBrief,”** then paste a source URL. The regular Claude Desktop app does not automatically discover these project-local instructions or skills; it needs a local-files extension or connector, or project material supplied manually.
+Open a terminal in the cloned SignalBrief repository and start Claude Code there. Claude Code can use the repository's [`CLAUDE.md`](CLAUDE.md) and [`.claude/skills/`](.claude/skills/) adapters. Paste a source URL to begin. The regular Claude Desktop app does not automatically discover these project-local instructions or skills; it needs a local-files extension or connector, or project material supplied manually.
 
 ## What happens under the hood
 

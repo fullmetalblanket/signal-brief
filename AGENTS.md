@@ -5,11 +5,12 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 ## Workflow
 
 1. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL.
-2. Treat the seed source as a starting point, then use the local `searxng` workflow to gather primary and reputable additional relevant sources.
-3. Select an existing topic directory or create a specific one at the workspace root, then read relevant existing notes before starting.
-4. Extend or cross-link material that substantially overlaps instead of creating a near-duplicate.
-5. Save a dated, source-backed research note under `<topic>/` with a summary, findings, analysis, and source links.
-6. Create `*-slides.md` beside the note when Marp support is available. Otherwise include a concise slide outline in the note or report that the deck is unavailable.
+2. On receiving a source, evaluate the needed source-discovery, transcript, and deck capabilities before research. Use the project-local `searxng`, `youtube-transcript`, and `marp-slides` workflows and their existing fallbacks where applicable. Request user approval only when an environment change is necessary for the source or requested output. Never silently install packages, start Docker, or change machine-wide configuration.
+3. Treat the seed source as a starting point, then use the local `searxng` workflow to gather primary and reputable additional relevant sources.
+4. Select an existing topic directory or create a specific one at the workspace root, then read relevant existing notes before starting.
+5. Extend or cross-link material that substantially overlaps instead of creating a near-duplicate.
+6. Save a dated, source-backed research note under `<topic>/` with a summary, findings, analysis, and source links.
+7. Create `*-slides.md` beside the note when Marp support is available. Otherwise include a concise slide outline in the note or report that the deck is unavailable.
 
 ## Conventions
 
@@ -24,7 +25,7 @@ SignalBrief is an instruction-first, tool-agnostic workspace for durable researc
 - Use the local `marp-slides` workflow to create a companion deck when Marp is available.
 - For a YouTube source, use the local `youtube-transcript` workflow to extract captions before analyzing the video when possible.
 - Use the local `searxng` workflow for source discovery. It uses a reachable local or configured SearXNG instance, then tries Mojeek web-search results and reports when no fallback results are available.
-- When the user asks to set up SignalBrief, use the local `signalbrief-setup` workflow to diagnose the core capabilities before requesting any environment changes.
+- Use the local `signalbrief-setup` workflow as a safe readiness diagnostic when a source needs it, or when the user explicitly asks to set up SignalBrief. It may diagnose capabilities automatically, but request user approval before any environment change.
 - Codex uses the repository-local `.agents/skills` adapters. Claude Code can use the `.claude/skills` adapters where that convention is supported.
 
 ## Layout
