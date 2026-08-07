@@ -1,6 +1,6 @@
 # SignalBrief
 
-![SignalBrief logo, showing a document with an incoming teal signal and gold bookmark](assets/signalbrief-logo.png)
+![SignalBrief logo, showing a document with an incoming teal signal and gold bookmark](assets/signalbrief-logo-dark.png)
 
 The research note is the durable source of truth, preserving evidence, nuance, and links. When Marp support is available, SignalBrief also creates a concise companion slide deck for rapid comprehension.
 
