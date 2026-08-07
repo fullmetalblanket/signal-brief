@@ -6,6 +6,19 @@ The research note is the durable source of truth, preserving evidence, nuance, a
 
 SignalBrief is a reusable, instruction-first workspace for AI-assisted research that remains useful after the chat ends. Start an AI session from this repository directory and paste a seed source, usually a webpage, article, blog post, or YouTube URL. The workspace instructions treat that source as a starting point, discover additional relevant sources, write a research note, and create a companion Marp deck where supported.
 
+## Quick start
+
+1. Choose or create an empty personal research folder with any name you want. `Research` is only an example.
+2. From inside that folder, clone SignalBrief into the current directory:
+
+   ```sh
+   git clone https://github.com/fullmetalblanket/signal-brief.git .
+   ```
+
+   The trailing dot is intentional - it puts SignalBrief directly in your chosen folder, which becomes your workspace, and prevents an extra nested `signal-brief` directory.
+3. Start your preferred AI assistant in that chosen research folder. Say **“Set up SignalBrief,”** then paste a source URL.
+4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
+
 ## Prerequisites
 
 SignalBrief bundles its source-discovery, Marp-slide, and YouTube-transcript workflows locally in [`skills/`](skills/). They are project instructions, not external installs. On first use, the workflow checks the tools available in the active AI environment and uses the simplest available path.
@@ -34,16 +47,11 @@ This is the recommended desktop GUI experience. Create or open a local Codex pro
 
 Open a terminal in the cloned SignalBrief repository and start Claude Code there. Claude Code can use the repository's [`CLAUDE.md`](CLAUDE.md) and [`.claude/skills/`](.claude/skills/) adapters. Say **“Set up SignalBrief,”** then paste a source URL. The regular Claude Desktop app does not automatically discover these project-local instructions or skills; it needs a local-files extension or connector, or project material supplied manually.
 
-## Quick start
-
-1. Choose or create a personal research home folder, for example `Research`.
-2. Clone SignalBrief into that personal research home folder.
-3. Start a preferred AI assistant in your research directory and paste a source, such as a webpage, article, blog post, or YouTube URL.
-4. Where Marp is available, the workflow produces a concise companion slide deck beside the research note.
-
 ## What happens under the hood
 
 SignalBrief is expected to select or create a topic-specific directory at the workspace root, then check relevant existing notes first. When research substantially overlaps, it extends or cross-links the existing material instead of creating a near-duplicate. It writes a dated, source-backed note and, where Marp is available, a companion deck beside it. Generated previews, downloads, and private working files stay out of version control. This is the intended workflow, not a database-level automatic deduplication guarantee.
+
+Your research remains editable after the initial run: continue chatting with your agent about the findings, ask it to augment or refine the note, and recreate the companion slide deck until it serves your needs.
 
 ## Two ways to learn from the same research
 
